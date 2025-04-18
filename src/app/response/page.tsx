@@ -65,31 +65,6 @@ function ResponseContent() {
       setError(response.error || `Failed to ${action} the task`);
       toast.error(`Something went wrong. Please try again.`);
     }
-    /*try {
-      const response = await fetch(`/api/tasks/${task.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          status
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to ${action} task`);
-      }
-      setIsDisabled(true);
-      toast.success(`You have ${status} the task.`);
-      
-      // Close the window after 5 seconds
-      setTimeout(() => {
-        window.close();
-      }, 5000);
-
-    } catch (err) {
-      setError(err instanceof Error ? err.message : `Failed to ${action} the task`);
-    } */
   };
 
   if (isLoading) {
