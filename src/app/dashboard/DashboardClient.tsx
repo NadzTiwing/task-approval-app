@@ -109,15 +109,15 @@ export default function DashboardClient({ initialTasks }: DashboardClientProps) 
   return (
     <div className="container mx-auto py-10">
       <Toaster />
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex lg:flex-row md:flex-row flex-col-reverse justify-between lg:items-center md:items-center items-start mb-6 mx-3">
         <h1 className="text-2xl font-bold">Task Management</h1>
-        <div className="space-x-4">
+        <div className="space-x-4 lg:mb-0 md:mb-0 mb-3">
           <Button onClick={() => setIsDialogOpen(true)}>Create Task</Button>
           <Button variant="outline" onClick={() => handleLogout()}>Logout</Button>
         </div>
       </div>
 
-      <div className="border rounded-lg">
+      <div className="border rounded-lg lg:mx-5 mx-3">
         <Table>
           <TableHeader className="bg-slate-200">
             <TableRow>

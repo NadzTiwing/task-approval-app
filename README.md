@@ -14,7 +14,8 @@ A task approval system that allows managers to create, update, and delete tasks 
 ## Live Demo
 
 [Task Approval App](https://task-approval-app.vercel.app/login)
-emai: manager@mail.com
+### Manager Credentials
+email: manager@mail.com
 password: pass123
 
 
@@ -73,7 +74,7 @@ CREATE TABLE tasks (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 ```
-3.b. Turn off Row Level Security (RLS) in Authentication > Configuration > Policies section of your Supabase project settings for testing purposes
+3.b. Create new user for manager in Authentication > Users enter email and password
 
 4. Create a SendGrid account and get the credentials
 ### SendGrid Setup
@@ -87,7 +88,7 @@ CREATE TABLE tasks (
    - Navigate to Settings > API Keys
    - Click "Create API Key"
    - Choose "Full Access" or "Restricted Access" with at least "Mail Send" permissions
-   - Copy the generated API key (you won't be able to see it again)
+   - Copy the generated API key
    - Add it to your `.env.local` file as `NEXT_PUBLIC_SENDGRID_API_KEY`
 
 4.d. Set up a Sender Identity:
@@ -96,10 +97,6 @@ CREATE TABLE tasks (
    - Fill in the required information
    - Verify your email address
    - Add it to your `.env.local` file as `NEXT_PUBLIC_SENDGRID_SENDER`
-4.e. Test your integration:
-   - Make sure your sender email matches the verified email in SendGrid
-   - Start with the sandbox environment if available
-   - Monitor your email activity in the SendGrid dashboard
 
 
 5. Run the development server
