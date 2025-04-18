@@ -8,6 +8,8 @@ import { Task } from '@/lib/types';
 import { verifyToken } from '@/lib/token-utils';
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { TaskAction, TaskStatus } from '@/lib/types';
+import { respondToTask } from './action';
 
 function ResponseContent() {
   const searchParams = useSearchParams();
@@ -38,7 +40,7 @@ function ResponseContent() {
         id,
         task,
         email,
-        status: status as 'pending' | 'approved' | 'rejected',
+        status: status as TaskStatus,
         created_at
       });
       setIsLoading(false);
@@ -47,10 +49,23 @@ function ResponseContent() {
     fetchTask();
   }, [token]);
 
-  const handleResponse = async (action: 'approve' | 'reject') => {
+  const handleResponse = async (action: TaskAction) => {
     if (!task) return;
     const status = action === 'approve' ? 'approved' : 'rejected';
-    try {
+    const response = await respondToTask(task.id, action);
+    if (response.success) {
+      setIsDisabled(true);
+      toast.success(`You have ${status} the task.`);
+
+      // Close the window after 5 seconds
+      setTimeout(() => {
+        window.close();
+      }, 5000);
+    } else {
+      setError(response.error || `Failed to ${action} the task`);
+      toast.error(`Something went wrong. Please try again.`);
+    }
+    /*try {
       const response = await fetch(`/api/tasks/${task.id}`, {
         method: 'PATCH',
         headers: {
@@ -74,7 +89,7 @@ function ResponseContent() {
 
     } catch (err) {
       setError(err instanceof Error ? err.message : `Failed to ${action} the task`);
-    }
+    } */
   };
 
   if (isLoading) {

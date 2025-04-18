@@ -1,14 +1,8 @@
-interface TaskDetails {
-  id: string;
-  task: string;
-  email: string;
-  status: string;
-  created_at: string;
-}
+import { Task } from './types';
 
 export async function verifyToken(token: string): Promise<{
   success: boolean;
-  task?: TaskDetails;
+  task?: Task;
   error?: string;
 }> {
   try {

@@ -11,6 +11,13 @@ A task approval system that allows managers to create, update, and delete tasks 
 - Tailwind CSS
 - shadcn/ui Components
 
+## Live Demo
+
+[Task Approval App](https://task-approval-app.vercel.app/login)
+emai: manager@mail.com
+password: pass123
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -103,10 +110,6 @@ npm run dev
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-
-### Live Demo
-
-<!-- [Task Approval App](https://task-approval-app-one.vercel.app/) -->
 
 
 

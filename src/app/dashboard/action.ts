@@ -3,8 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabaseServer'
-
-const appUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api`
+import { appUrl } from '@/lib/utils'
 
 export const logout = async () => {
   const supabase = await createClient()

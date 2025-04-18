@@ -1,4 +1,5 @@
 export type TaskStatus = 'pending' | 'approved' | 'rejected';
+export type TaskAction = 'approve' | 'reject';
 
 export interface Task {
   id: string;
@@ -19,3 +20,4 @@ export interface UpdateTaskInput {
   task?: string;
   email?: string;
 } 
+

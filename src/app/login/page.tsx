@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,16 +8,20 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 
 export default function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleLogin = async (e: React.FormEvent) => {
+    setIsLoading(true);
     e.preventDefault();
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const response = await login(formData);
-    console.log('response', response)
     if (response?.error) {
       toast.error(response.error);
-      
+      setIsLoading(false);
       return;
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -57,8 +61,9 @@ export default function LoginPage() {
             <Button
               type="submit"
               className="w-full"
+              disabled={isLoading}
             >
-              Sign in
+              {isLoading ? 'Verifying...' : 'Sign in'}
             </Button>
           </div>
         </form>
