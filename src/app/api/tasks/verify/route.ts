@@ -10,7 +10,6 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { token } = body;
-    console.log('token', token);
     // Query the database to find the task with the matching token
     const { data: task, error } = await supabase
       .from('tasks')
@@ -18,7 +17,6 @@ export async function POST(request: Request) {
       .eq('token', token)
       .single();
 
-    console.log('database task res', task);
     if (error) {
       console.error('Error fetching task:', error);
       return NextResponse.json(

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,7 +9,7 @@ import { verifyToken } from '@/lib/token-utils';
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 
-export default function RespondPage() {
+function ResponseContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const [task, setTask] = useState<Task | null>(null);
@@ -146,5 +146,17 @@ export default function RespondPage() {
         )}
       </Card>
     </div>
+  );
+}
+
+export default function RespondPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    }>
+      <ResponseContent />
+    </Suspense>
   );
 }
